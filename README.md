@@ -1,4 +1,4 @@
-# ChatWeaver
+# ChatWeaver (https://pypi.org/project/chatweaver/)
 
 **ChatWeaver** is a Python library that simplifies the implementation of chatbots powered by OpenAI models. Designed with developers in mind, it provides powerful features and an intuitive interface to enhance the development of conversational AI.
 
