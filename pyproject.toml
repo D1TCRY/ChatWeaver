@@ -1,0 +1,33 @@
+[project]
+name = "chatweaver" # Name of the library
+version = "1.1.0" # Version of the library
+dependencies = [
+    "openai==2.3.0"
+] # Dependencies of the library
+authors = [
+    { name="Cecchelani Diego", email="ceccdieg@gmail.com" },
+] # Authors of the library
+description = "A Python library that simplifies building AI-driven chatbots with OpenAI, offering conversation management, file attachments, and persistent storage in one cohesive package." # Description of the library
+readme = "README.md" # Readme file of the library
+requires-python = ">=3.10" # Required python version
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent", 
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+] # Classifiers of the library
+urls = { Homepage = "https://www.chatweaver.it" }
+license = "MIT"
+license-files = ["LICEN[CS]E*"]
+
+
+[build-system]
+requires = ["setuptools>=77.0.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+include-package-data = true
+package-data = { chatweaver = ["*", "**/*"] } # Include all files and subdirectories in the package 'Example'
+packages = { find = { where=["src"], include=["chatweaver*"] } }  # Con layout src/, ricorda che i moduli sono sotto src/Example/... e l’import in runtime resta import Example.
