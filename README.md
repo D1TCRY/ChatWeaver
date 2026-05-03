@@ -812,4 +812,4 @@ MIT
 
 ## Credits / Authors / Acknowledgements
 
-Cecchelani Diego
+[Cecchelani Diego](mailto:ceccdieg@gmail.com)
