@@ -1,0 +1,31 @@
+import pathlib
+from typing import Any
+from urllib.parse import urlparse
+from openai.types import FileObject
+
+
+def is_valid_url(url: str) -> bool:
+    if not isinstance(url, str): url = str(url)
+    
+    try:
+        url = str(url)
+        result = urlparse(url)
+        return all([result.scheme, result.netloc])
+    except ValueError:
+        return False
+
+def is_valid_path(path: str | pathlib.Path | Any) -> bool:
+    if isinstance(path, str):
+        path = pathlib.Path(path)
+    elif not isinstance(path, pathlib.Path):
+        try:
+            path = pathlib.Path(str(path))
+        except Exception:
+            return False
+    return path.exists()
+
+def is_file_id(file: FileObject | Any) -> bool:
+    if isinstance(file, FileObject) and file.id:
+        return True
+    return False
+

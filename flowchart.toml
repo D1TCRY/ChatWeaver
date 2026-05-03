@@ -1,0 +1,91 @@
+# software_dev_flow.loom.toml
+Version = "1.0"
+Comment = "Flowchart multi-agente per analisi, sviluppo, test e consegna di una soluzione software"
+StartAt = "PlanSolution"
+
+
+###############################################################################
+#                                STATE MACHINE                                #
+###############################################################################
+
+[States.PlanSolution]
+Type  = "Task"
+Agent = "Planner"
+Next  = "ParallelImplementation"
+
+###############################################################################
+# Parallel implementation of Task 1 / Task 2
+###############################################################################
+[States.ParallelImplementation]
+Type = "Parallel"
+Next = "IntegratedTest"
+
+# --- Branch 1 ----------------------------------------------------------------
+[[States.ParallelImplementation.Branches]]
+StartAt = "ImplementTask1"
+
+  [States.ParallelImplementation.Branches.States.ImplementTask1]
+  Type    = "Task"
+  Agent   = "Codificatore"
+  Comment = "Implementa il Task 1"
+  End     = true
+
+# --- Branch 2 ----------------------------------------------------------------
+[[States.ParallelImplementation.Branches]]
+StartAt = "ImplementTask2"
+
+  [States.ParallelImplementation.Branches.States.ImplementTask2]
+  Type    = "Task"
+  Agent   = "Codificatore"
+  Comment = "Implementa il Task 2"
+  End     = true
+
+###############################################################################
+# Test integrato
+###############################################################################
+[States.IntegratedTest]
+Type  = "Task"
+Agent = "Tester"
+Next  = "CheckTests"
+
+###############################################################################
+# Controllo dei risultati dei test
+###############################################################################
+[States.CheckTests]
+Type    = "Choice"
+Default = "GatherFeedback"
+
+  # ramo “successo”
+  [[States.CheckTests.Choices]]
+  Variable       = "$.tests_passed"
+  BooleanEquals  = true
+  Next           = "DeliverSolution"
+
+###############################################################################
+#  In caso di fallimento dei test: feedback, aggiornamento piano e correzioni
+###############################################################################
+[States.GatherFeedback]
+Type  = "Task"
+Agent = "Tester"
+Next  = "UpdatePlan"
+
+[States.UpdatePlan]
+Type  = "Task"
+Agent = "Planner"
+Next  = "FixTasks"
+
+[States.FixTasks]
+Type  = "Task"
+Agent = "Codificatore"
+Next  = "IntegratedTest"    # loop verso i test integrati
+
+###############################################################################
+# Consegna finale
+###############################################################################
+[States.DeliverSolution]
+Type  = "Task"
+Agent = "Supervisor"
+End   = true
+
+
+
