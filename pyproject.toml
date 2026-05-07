@@ -18,7 +18,7 @@ classifiers = [
     "Topic :: Software Development :: Libraries :: Python Modules",
     "Topic :: Scientific/Engineering :: Artificial Intelligence",
 ] # Classifiers of the library
-urls = { Homepage = "https://www.chatweaver.it" }
+urls = { Homepage = "https://www.chatweaver.net" }
 license = "MIT"
 license-files = ["LICEN[CS]E*"]
 
