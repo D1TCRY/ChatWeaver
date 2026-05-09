@@ -37,7 +37,7 @@ class Archive(object):
     # -------- MAGIC METHODS --------
     def __str__(self) -> str:
         _ = 6
-        return f"<Archive | path: {self.__path!r}, length: {len(self.data)}, api_key: {(self.api_key[:_]+'...'+self.api_key[-_:] if len(self.api_key) > 2*_+3 else self.api_key)!r}>"
+        return f"<Archive | path: {self.__path!r}, length: {len(self.data)}, api_key: {(self.api_key[:_]+'...'+self.api_key[-_:] if self.api_key and len(self.api_key) > 2*_+3 else self.api_key)!r}>"
 
     def __repr__(self) -> str:
         return f"Archive(path={self.__path!r})"
@@ -302,7 +302,7 @@ class Archive(object):
         version = 1
         flags = 0
 
-        # The header we write is 24 bytes:
+        # The header is 24 bytes:
         # 2 + 2 + 2 + 2 + 8 + 4 + 4 = 24
         header_len = 24
         metadata_len = 0
