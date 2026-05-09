@@ -1,33 +1,51 @@
 [project]
-name = "chatweaver" # Name of the library
-version = "1.2.1" # Version of the library
-dependencies = [
-    "openai==2.3.0"
-] # Dependencies of the library
+name = "chatweaver"
+version = "1.2.1"
+description = "A Python library that simplifies building AI-driven chatbots with OpenAI, offering conversation management, file attachments, structured outputs, and persistent storage in one cohesive package."
+readme = { file = "README.md", content-type = "text/markdown" }
+requires-python = ">=3.10"
+license = "MIT"
+license-files = ["LICENCE"]
 authors = [
-    { name="Cecchelani Diego", email="ceccdieg@gmail.com" },
-] # Authors of the library
-description = "A Python library that simplifies building AI-driven chatbots with OpenAI, offering conversation management, file attachments, and persistent storage in one cohesive package." # Description of the library
-readme = "README.md" # Readme file of the library
-requires-python = ">=3.10" # Required python version
+    { name = "Cecchelani Diego", email = "ceccdieg@gmail.com" },
+]
+keywords = [
+    "ai",
+    "chatbot",
+    "chat-completions",
+    "openai",
+    "conversation",
+    "structured-output",
+]
+dependencies = [
+    "openai>=2.3.0,<3",
+]
 classifiers = [
-    "Programming Language :: Python :: 3",
-    "Operating System :: OS Independent", 
     "Development Status :: 4 - Beta",
     "Intended Audience :: Developers",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
     "Topic :: Software Development :: Libraries :: Python Modules",
     "Topic :: Scientific/Engineering :: Artificial Intelligence",
-] # Classifiers of the library
-urls = { Homepage = "https://www.chatweaver.net" }
-license = "MIT"
-license-files = ["LICEN[CS]E*"]
+]
+
+[project.urls]
+Homepage = "https://www.chatweaver.net"
 
 
 [build-system]
-requires = ["setuptools>=77.0.0", "wheel"]
+requires = ["setuptools>=77.0.3", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [tool.setuptools]
-include-package-data = true
-package-data = { chatweaver = ["*", "**/*"] } # Include all files and subdirectories in the package 'Example'
-packages = { find = { where=["src"], include=["chatweaver*"] } }  # Con layout src/, ricorda che i moduli sono sotto src/Example/... e l’import in runtime resta import Example.
+package-dir = { "" = "src" }
+
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["chatweaver*"]
+namespaces = false
